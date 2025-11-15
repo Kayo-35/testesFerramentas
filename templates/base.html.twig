@@ -5,6 +5,7 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
         {% endblock %}
 
         {% block javascripts %}
@@ -12,6 +13,17 @@
         {% endblock %}
     </head>
     <body>
+        {{ include('partials/_navbar.html.twig') }}
         {% block body %}{% endblock %}
+        {% if app.request.attributes.get('_route') == 'index_base' %}
+            {# CDN e script para geração dos Graficos #}
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="{{ asset('js/charts.js') }}"></script>
+
+            {# CDNs e scripts para geração de PDFs #}
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" referrerpolicy="no-referrer"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.3/jspdf.umd.min.js"></script>
+            <script src="{{ asset('js/conversaoPdf.js') }}"></script>
+        {% endif %}
     </body>
 </html>

@@ -1,0 +1,167 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Testes: Conversão PDFs{% endblock %}
+
+{% block body %}
+
+<main class="py-4">
+    <div class="container mb-5">
+        <h2>
+            Esse trecho não seria impresso :)
+        </h2>
+        <p>
+            Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.
+            Phasellus dignissim, lacus in malesuada egestas, turpis arcu commodo lacus, vel facilisis velit odio non urna. Nullam venenatis justo nec pellentesque dictum.
+        </p>
+        <div class="d-flex justify-content-center">
+            <button id="gerarCliente" class="btn btn-outline-primary m-2">
+                {{ ux_icon('bi:filetype-pdf', {style: 'height: 7em'}) }} (JS)
+            </button>
+        </div>
+    </div>
+    <div id="impressao" class="container border border-primary border-5">
+        <!-- Pagina 1 -->
+        <section id="pagina1" class="container-fluid py-3">
+            <!-- A classe 'row' define a estrutura de grid -->
+            <div class="row justify-content-center row-cols-1 row-cols-md-2 g-3">
+
+                <!-- 1) Texto -->
+                <!-- A classe 'col' define a coluna. No Bootstrap, é um filho direto de 'row'. -->
+                <section class="col">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-header bg-light fw-semibold">Introdução</div>
+                        <div class="card-body d-flex flex-column gap-2">
+                            <p class="mb-0">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae risus sed tortor luctus bibendum. Cras fermentum, ipsum a posuere feugiat, urna elit efficitur tortor, id convallis sapien nisl at erat.
+                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
+                            </p>
+                            <ul class="list-group">
+                                <li class="list-group-item">Use espaçamentos utilitários...</li>
+                                <li class="list-group-item">Aplique grid responsivo...</li>
+                                <li class="list-group-item">Prefira componentes prontos...</li>
+                            </ul>
+                            <div class="alert alert-info mb-0 rounded-3">Consistência reduz retrabalho...</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2) Imagem -->
+                <section class="col">
+                    <div class="card h-100 shadow-sm border-0">
+                        <!-- Imagem no topo do card, com 'ratio' para proporção -->
+                        <div class="ratio ratio-16x9">
+                            <img src="https://loremflickr.com/800/450/landscape,city" class="img-fluid rounded-top object-fit-cover" alt="">
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title mb-2">Imagem 1</h6>
+                            <p class="card-text mb-0">Placeholder do Lorem Picsum...</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3) Texto (CORREÇÃO APLICADA AQUI) -->
+                <section class="col">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-header bg-light fw-semibold">Texto técnico</div>
+                        <div class="card-body">
+                            <p class="mb-2">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae risus sed tortor luctus bibendum. Cras fermentum, ipsum a posuere feugiat, urna elit efficitur tortor, id convallis sapien nisl at erat.
+                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae risus sed tortor luctus bibendum. Cras fermentum, ipsum a posuere feugiat, urna elit efficitur tortor, id convallis sapien nisl at erat.
+                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
+                            </p>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge text-bg-primary rounded-pill">Guia</span>
+                                <span class="badge text-bg-secondary rounded-pill">Padrões</span>
+                                <span class="badge text-bg-success rounded-pill">Acessibilidade</span>
+                            </div>
+                            <!-- A CORREÇÃO: card-footer estava dentro de card-body, agora está no lugar correto. -->
+                        </div>
+                        <div class="card-footer bg-white">
+                            <small class="text-muted">Grid e gutters controlam o respiro...</small>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4) Gráfico Pizza -->
+                <section class="col">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-header bg-light fw-semibold">Gráfico de Pizza</div>
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <canvas id="chartPie"></canvas>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <!-- Separador -->
+        <div class="page-break" hidden></div>
+
+        <!-- Pagina 2 -->
+        <section id="pagina2" class="container-fluid py-3">
+            <div class="row justify-content-center row-cols-1 row-cols-md-2 g-3">
+
+                <!-- 5) Imagem -->
+                <section class="col">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="ratio ratio-16x9">
+                            <img src="https://picsum.photos/800/450" class="img-fluid rounded-top object-fit-cover" alt="">
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title mb-2">Imagem 2</h6>
+                            <p class="card-text mb-0">Placeholder temático...</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 6) Texto -->
+                <section class="col">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-header bg-light fw-semibold">Texto criativo</div>
+                        <div class="card-body d-grid gap-2">
+                            <p class="mb-0">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae risus sed tortor luctus bibendum. Cras fermentum, ipsum a posuere feugiat, urna elit efficitur tortor, id convallis sapien nisl at erat.
+                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
+                            </p>
+                            <div class="p-3 bg-light rounded-3">Placeholders com dimensões...</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 7) Gráfico Barras -->
+                <section class="col">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-header bg-light fw-semibold">Gráfico de Barras</div>
+                        <div class="card-body">
+                            <div class="ratio ratio-16x9">
+                                <canvas id="chartBar"></canvas>
+                            </div>
+                            <p class="text-muted small mb-0 mt-3">Canvas com proporção fixa...</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 8) Texto -->
+                <section class="col">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-header bg-light fw-semibold">Encerramento</div>
+                        <div class="card-body">
+                            <p class="mb-2">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae risus sed tortor luctus bibendum. Cras fermentum, ipsum a posuere feugiat, urna elit efficitur tortor, id convallis sapien nisl at erat.
+                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
+                            </p>
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item badge text-bg-secondary">Grid</li>
+                                <li class="list-inline-item badge text-bg-secondary">Gutters</li>
+                                <li class="list-inline-item badge text-bg-secondary">Cards</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </div>
+</main>
+
+{% endblock %}
