@@ -6,9 +6,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-link text-light" href="{{ path('home_page') }}">Home</a>
-            <a class="nav-link text-light" href="{{ path('index_base') }}">Conversão PDFs</a>
-            <a class="nav-link text-light" href="#">Ip Lookup</a>
+            <a class="nav-link text-light {{ app.request.attributes.get('_route') == 'home_page' ? 'btn btn-primary active' : '' }}" href="{{ path('home_page') }}">Home</a>
+            <a class="nav-link text-light {{ app.request.attributes.get('_route') == 'index_base' ? 'btn btn-primary active' : '' }}" href="{{ path('index_base') }}">Conversão PDFs</a>
+            <a class="nav-link text-light {{ app.request.attributes.get('_route') == 'index_ip_lookup' ? 'btn btn-primary active' : '' }}" href="{{ path('index_ip_lookup') }}">Ip Lookup</a>
         </div>
     </div>
 </div>

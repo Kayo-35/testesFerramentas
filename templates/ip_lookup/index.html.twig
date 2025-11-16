@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Localizador por Ips!{% endblock %}
+
+{% block body %}
+<section class="d-flex justify-content-center mt-5 bg-light">
+<div class="container">
+    <div class="row justify-content-center">
+    <div class="col-11 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+        <div class="p-4 p-md-5 rounded-4 shadow-sm border bg-white">
+        <form action="{{ path('find_ip_location') }}" method="GET">
+            <div class="mb-3">
+                <label for="ipAddress" class="form-label">Insira o IP: </label>
+                <input type="text" name="ip" class="form-control" id="ip">
+            </div>
+
+            <div class="mb-4">
+                <label for="responseType" class="form-label">Formato da Resposta</label>
+                <select id="responseType" name="formato_resposta" class="form-select">
+                    <option value="json">Json</option>
+                    <option value="html">Html</option>
+                </select>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">
+                    Buscar
+                </button>
+            </div>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+</section>
+{% endblock %}

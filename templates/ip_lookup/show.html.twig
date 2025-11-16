@@ -1,0 +1,185 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Localizador por Ips!{% endblock %}
+
+{% block body %}
+<section class="container my-5">
+    {% if locale is empty %}
+        <div class="d-flex justify-content-center">
+            <div class="w-md-50 w-lg-50">
+                <div class="p-5 rounded-3 bg-info bg-gradient text-white text-center shadow-sm">
+                    {{ ux_icon('nonicons:not-found-16', {style: 'height: 12em'}) }}
+                    <p class="lead m-1 fw-bold">
+                        Nenhum resultado fora encontrado!
+                    </p>
+                    <p class="text-center text-muted small m-1">
+                        Verifique o endereço ip informado e tente novamente!
+                    </p>
+                </div>
+           </div>
+        </div>
+    {% else %}
+        <div class="p-4 p-md-5 rounded-3 bg-info bg-gradient text-white shadow">
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                <div>
+                    <div class="text-white-50 small text-uppercase">IP Address</div>
+                    <div class="h2 mb-0 font-monospace">{{ locale.ip }}</div>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <img src="{{ locale.location.country_flag }}" alt="Bandeira do país" class="rounded" style="width:45px;height:30px;">
+                    <div class="text-end">
+                        <div class="h4 mb-0">
+                            {{ locale.location.country_name }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mt-1">
+            <div class="col-12 col-lg-7">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <h6 class="text-uppercase text-secondary mb-3">Localização</h6>
+
+                        <div class="row gy-3">
+                            <div class="col-12">
+                                <div class="text-muted small">Continente</div>
+                                <div class="fw-medium">
+                                    {{ locale.location.continent_name }}
+                                    <span class="text-body-secondary">
+                                        ({{ locale.location.continent_code }})
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="text-muted small">País</div>
+                                <div class="fw-medium">
+                                    {{ locale.location.country_name_official }}
+                                    <span class="text-body-secondary">
+                                        ({{ locale.location.country_code2 }} / {{ locale.location.country_code3 }})
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-md-4">
+                                <div class="text-muted small">Capital</div>
+                                <div>{{ locale.location.country_capital }}</div>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <div class="text-muted small">Estado / Codigo</div>
+                                <div>
+                                    {{ locale.location.state_prov }}
+                                    <span class="text-body-secondary">
+                                        {{ locale.location.state_code }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <div class="text-muted small">Distrito</div>
+                                <div>
+                                    {{ (locale.location.district|length > 0) ? locale.location.district : 'Inaplicavel' }}
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-md-6">
+                                <div class="text-muted small">Cidade</div>
+                                <div>{{ locale.location.city }}</div>
+                            </div>
+                            <div class="col-6 col-md-6">
+                                <div class="text-muted small">Endereço Postal</div>
+                                <div class="font-monospace">
+                                    {{ locale.location.zipcode }}
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="text-muted small">Coordenadas</div>
+                                <div class="font-monospace">{{ locale.location.latitude }}, {{ locale.location.longitude }}</div>
+                            </div>
+
+                            <div class="col-6 col-md-6">
+                                <div class="text-muted small">ID Geoname</div>
+                                <div class="font-monospace">{{ locale.location.geoname_id }}</div>
+                            </div>
+
+                            <div class="col-6 col-md-6">
+                                <div class="text-muted small">Integra União Europeia?</div>
+                                <div>
+                                    {{ (locale.location.is_eu == false) ? 'Não' : 'Sim' }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <div class="col-12 col-lg-5">
+                <div class="d-flex flex-column gap-4 h-100">
+
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h6 class="text-uppercase text-secondary mb-3">Metadados do Páis</h6>
+                            <div class="row gy-3">
+                                <div class="col-6">
+                                    <div class="text-muted small">Código de Chamadas</div>
+                                    <div class="font-monospace">
+                                        {{ locale.country_metadata.calling_code }}
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-muted small">TLD</div>
+                                    <div class="font-monospace">
+                                        {{ locale.country_metadata.tld }}
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="text-muted small">Idiomas Oficiais</div>
+                                    <div class="font-monospace">
+                                        {% for idioma in locale.country_metadata.languages %}
+                                            {% if (loop.last) %}
+                                                {{ idioma }}
+                                            {% else %}
+                                                {{ idioma }} -
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h6 class="text-uppercase text-secondary mb-3">Moeda Oficial</h6>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    <div class="text-muted small">Nome / Cifra</div>
+                                    <div class="fw-medium">
+                                        {{ locale.currency.name }}
+                                        <span class="text-body-secondary">
+                                            ({{ locale.currency.code }})
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="text-end">
+                                    <div class="text-muted small">Símbolo</div>
+                                    <div class="fs-3 lh-1">
+                                        {{ locale.currency.symbol }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-grid">
+                <a class="btn btn-primary" href="{{ path('index_ip_lookup') }}">
+                    <b>RETORNAR</b> {{ ux_icon('icon-park-outline:return', {style: 'height: 1.5em'}) }}
+                </a>
+            </div>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

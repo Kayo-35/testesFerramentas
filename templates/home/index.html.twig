@@ -4,7 +4,188 @@
 
 {% block body %}
 
-<div class="container mt-5">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-</div>
+<section class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10">
+      <div class="row g-4 align-items-stretch">
+        <div class="col-12 col-md-6 d-flex">
+          <div class="card border-0 shadow-sm w-100 text-center">
+            <div class="card-body p-4">
+              <h3 class="h5 mb-3">
+                Geração de PDFs
+                {{ ux_icon('teenyicons:pdf-outline', {style: 'height: 2em'}) }}
+              </h3>
+              <a href="https://example.com/resource-one" class="d-inline-block">
+                <img src="https://camo.githubusercontent.com/7ca5e5ac9d754e50095619448a539a3fdaf92a2ac0a0a6425487989119baf688/68747470733a2f2f706172616c6c2e61782f706172616c6c61782d323031362f696d672f7376672f6a737064662d6c6f676f2e737667"
+                     alt="jsPDF"
+                     class="img-fluid rounded shadow-sm">
+              </a>
+               <div class="mt-3 small text-muted">
+                <section class="container py-4">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-lg-8">
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body p-4">
+                                <h3 class="h5 mb-3">Resultados</h3>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="me-3">
+                                            <div class="fw-medium">
+                                                Fidelidade ao conteúdo original
+                                            </div>
+                                            <div class="small text-muted">
+                                                90% a 100%
+                                            </div>
+                                        </div>
+                                        <span class="badge text-bg-success">
+                                            {{ ux_icon('icon-park-outline:success', {style: 'height: 2em'}) }}
+                                        </span>
+                                    </li>
+
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-3">
+                                        <div class="fw-medium">Tempo de Geração</div>
+                                        <div class="small text-muted">2-5 segundos</div>
+                                    </div>
+                                    <span class="badge text-bg-warning">
+                                        {{ ux_icon('hugeicons:more-or-less', {style: 'height: 2em'}) }}
+                                    </span>
+                                    </li>
+
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="me-3">
+                                            <div class="fw-medium">Facilidade de Implementação</div>
+                                            <div class="small text-muted">
+                                                Média-Alta
+                                            </div>
+                                        </div>
+                                        <span class="badge text-bg-warning">
+                                            {{ ux_icon('hugeicons:more-or-less', {style: 'height: 2em'}) }}
+                                        </span>
+                                    </li>
+
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="me-3">
+                                            <div class="fw-medium">Texto não selecionável</div>
+                                            <div class="small text-muted">
+                                                Obs: Salvo o caso de construção manual dos campos textuais ao invés do scaneamento padrão
+                                                utilizando-se de <a href="https://html2canvas.hertzen.com/" class="link-primary">html2canvas</a>
+                                                que é o fluxo básico ao utilizar a biblioteca jsPDF
+                                            </div>
+                                        </div>
+                                        <span class="badge text-bg-danger">
+                                            {{ ux_icon('raphael:no', {style: 'height: 2em'}) }}
+                                        </span>
+                                    </li>
+
+                                </ul>
+                                </div>
+                                <div class="d-grid">
+                                    <a class="btn btn-primary" href="{{ path('index_base') }}">
+                                        Testar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+               </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 d-flex">
+          <div class="card border-0 shadow-sm w-100 text-center">
+            <div class="card-body p-4">
+              <h3 class="h5 mb-3">
+                Ip Geolocation(API)
+                {{ ux_icon('material-symbols:api', {style: 'height: 2em'}) }}
+              </h3>
+
+              <a href="https://example.com/resource-two" class="d-inline-block">
+                <img src="https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_7543ac406d0ebb6b9eff697cd0137720/ipgeolocation.png"
+                     alt="Resource Two"
+                     class="img-fluid rounded shadow-sm"
+                     style="height: 10em">
+              </a>
+                <section class="container py-4">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-lg-8">
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body p-4">
+                                <h3 class="h5 mb-3">Resultados</h3>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="me-3">
+                                            <div class="fw-medium">
+                                                Velocidade de respostas
+                                            </div>
+                                            <div class="small text-muted">
+                                                Instantâneo
+                                            </div>
+                                        </div>
+                                        <span class="badge text-bg-success">
+                                            {{ ux_icon('icon-park-outline:success', {style: 'height: 2em'}) }}
+                                        </span>
+                                    </li>
+
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-3">
+                                        <div class="fw-medium">Complexidade de manipulação</div>
+                                        <div class="small text-muted">
+                                            Simples
+                                        </div>
+                                    </div>
+                                    <span class="badge text-bg-success">
+                                        {{ ux_icon('icon-park-outline:success', {style: 'height: 2em'}) }}
+                                    </span>
+                                    </li>
+
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="me-3">
+                                            <div class="fw-medium">Facilidade de Implementação</div>
+                                            <div class="small text-muted">
+                                                Alta
+                                            </div>
+                                        </div>
+                                        <span class="badge text-bg-success">
+                                            {{ ux_icon('icon-park-outline:success', {style: 'height: 2em'}) }}
+                                        </span>
+                                    </li>
+
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="me-3">
+                                            <div class="fw-medium">
+                                                Precisão para cidades
+                                            </div>
+                                            <div class="small text-muted">
+                                                A precisão da geração da cidade atrelada ao endereço IP não é certeira. Um exeplo é
+                                                que endereços IPs provenientes do estado de SP, mas não da cidade de SP podem apontar
+                                                para a capital de qualquer maneira, fato que a própria API indica em sua FAQ:
+                                                <a href="https://ipgeolocation.io/ip-location-api.html#frequently-asked-questions" class="link-primary">Acessar</a>
+                                            </div>
+                                        </div>
+                                        <span class="badge text-bg-danger">
+                                            {{ ux_icon('raphael:no', {style: 'height: 2em'}) }}
+                                        </span>
+                                    </li>
+
+                                </ul>
+                                </div>
+                                <div class="d-grid">
+                                    <a class="btn btn-primary" href="{{ path('index_ip_lookup') }}">
+                                        Testar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
