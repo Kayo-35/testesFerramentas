@@ -1,17 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let acionador = document.getElementById("gerarServer"); let secaoImprimir = document.getElementById("impressao");
     chartPizzaImg = gerarGraficoPizza();
     chartBarraImg = gerarGraficoBarra();
-
-    acionador.addEventListener('click', () => {
-        //Captura o formulário e adiciona o elemento de input para adição dos arquivos
-        setupTransferencia(secaoImprimir, [chartPizzaImg, chartBarraImg])
-    });
 });
 
-//A ser feito(Transfências de arquivos bem mais complexa no symfony, camadas de segurança, etc)
-async function setupTransferencia(markup, imagens) {
-}
 
 function gerarGraficoPizza() {
     const data = {

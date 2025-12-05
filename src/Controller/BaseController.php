@@ -7,11 +7,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Dompdf\Dompdf;
 use App\Services\GerarPdfService;
+use App\Services\MonkeyPdfService;
 
 final class BaseController extends AbstractController
 {
-    private string $caminhoTemplate = '/home/kayo/Documentos/estudos/dev/trabalho/testesFerramentas/src/files/template.html';
-    private string $caminhoSalvar = '/home/kayo/Documentos/estudos/dev/trabalho/testesFerramentas/src/files/'; //placeholder incluso para nomenclatura dos arquivos
+    private string $caminhoTemplate = '/home/kayo/repos/testesFerramentas/src/files/template.html';
+    private string $caminhoSalvar = '/home/kayo/repos/testesFerramentas/src/files/';
+    //placeholder incluso para nomenclatura dos arquivos
 
     #[Route('/base', name: 'index_base', methods: ['GET'])]
     public function index(): Response
@@ -19,28 +21,36 @@ final class BaseController extends AbstractController
         return $this->render('base/index.html.twig');
     }
     #[Route('/api/pdf', name: 'api_pdf', methods: ['POST'])]
-    public function gerarPdf(GerarPdfService $gerador): Response
+    public function gerarPdf(GerarPdfService $gerador, MonkeyPdfService $monkey): Response
     {
         $template = json_decode(file_get_contents('php://input'));
+        file_put_contents($this->caminhoSalvar . 'template.html', $template);
 
-        //UseAnvil
+        /*UseAnvil
         $binario_pdf = $gerador->gerarPdf($template->html);
+        */
 
-        //Weasyprint: Apenas para testes em pc pessoal
+        /*Weasyprint: Apenas para testes em pc pessoal
         $this->weasyprint(
             $this->caminhoTemplate,
             $this->caminhoSalvar . 'conversao_weasy.pdf'
         );
+        */
 
-        //DomPDF
+        /*DomPDF
         $this->domPdf(
             $this->caminhoTemplate,
             $this->caminhoSalvar . 'conversao_dom.pdf'
         );
+        */
 
-        return new Response($binario_pdf, 200, [
+        $resposta = $monkey->gerarPdf($template->html);
+        //debug
+        file_put_contents($this->caminhoSalvar . 'testeResposta.txt', array_keys($resposta));
+
+        return new Response($resposta['pdf'], 200, [
             'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'attachment; filename="document.pdf"'
+            'Content-Disposition' => 'attachment; filename="document.pdf"',
         ]);
     }
     private function weasyprint(string $caminhoTemplate, string $caminhoSalvar): string|false|null

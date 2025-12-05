@@ -163,5 +163,15 @@
         </section>
     </div>
 </main>
+{% endblock %}
 
+{% block scripts %}
+    {# CDN e script para geração dos Graficos #}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ asset('js/charts.js') }}"></script>
+
+    {# CDNs e scripts para geração de PDFs #}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.3/jspdf.umd.min.js"></script>
+    <script src="{{ asset('js/conversaoPdf.js') }}"></script>
 {% endblock %}
